@@ -10,4 +10,17 @@ sudo ln -s /etc/nginx/sites-available/$domain_name /etc/nginx/sites-enabled/
 sudo /etc/init.d/nginx restart
 
 # Display the configured domain name
+echo "OK"
+
+# Check registrar information using whoisxmlapi.com
+response=$(curl -s "https://whois.whoisxmlapi.com/api/v1?apiKey=YOUR_API_KEY&domainName=$domain_name" | jq -r '.registrarName')
+
+# Verify registrarName in the API response
+if [ "$response" == "Dotserve Inc" ]; then
+    echo "#student.web-01"
+else
+    echo "Registrar information not as expected"
+fi
+
+# Display the configured domain name
 echo $domain_name
