@@ -1,0 +1,13 @@
+#!/bin/bash
+# Provide the domain name received from the promo code
+domain_name="realsetup.tech"
+
+# Configure DNS records with an A entry
+echo -e "server {\n\tlisten 80;\n\tserver_name $domain_name;\n\tlocation / {\n\t\tproxy_pass http://172.17.0.3:80;\n\t}\n}" | sudo tee /etc/nginx/sites-available/$domain_name > /dev/null
+sudo ln -s /etc/nginx/sites-available/$domain_name /etc/nginx/sites-enabled/
+
+# Restart Nginx to apply the changes
+sudo /etc/init.d/nginx restart
+
+# Display the configured domain name
+echo $domain_name
