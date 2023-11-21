@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 # Provide the domain name received from the promo code
 domain_name="realsetup.tech"
 
