@@ -1,0 +1,30 @@
+#!/usr/bin/env bash
+# Install and configure HAproxy on a new Ubuntu machine
+
+# Install HAproxy
+apt-get update
+apt-get install -y haproxy
+
+# Configure HAproxy
+cat <<EOF > /etc/haproxy/haproxy.cfg
+frontend myfrontend
+    bind *:80
+    mode http
+    default_backend mybackend
+
+backend mybackend
+    mode http
+    balance roundrobin
+    server web-01 52.90.154.18:80 check
+    server web-02 18.212.203.184:80 check
+EOF
+
+# Check if HAproxy init script exists
+if [ -f /etc/init.d/haproxy ]; then
+    echo "HAproxy init script is present"
+else
+    echo "HAproxy init script is missing. Check installation."
+fi
+
+# Restart HAproxy
+service haproxy restart
