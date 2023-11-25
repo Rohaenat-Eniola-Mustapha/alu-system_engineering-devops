@@ -1,22 +1,15 @@
 #!/usr/bin/env bash
-# Update package list and install nginx
+# Update package list and install ngnix
 
-sudo apt-get update
-
-# Install nginx
-sudo apt-get install nginx -y
-
-sudo mkdir /etc/nginx/html
-sudo touch /etc/nginx/html/index.html
-echo "Holberton School" | sudo tee /etc/nginx/html/index.html
-
-printf %s "server {
-     listen      80 default_server;
-     listen      [::]:80 default_server;
-     root        /etc/nginx/html;
-     index       index.html index.htm;
-}
-" > /etc/nginx/sites-available/default
-
-# Restart nginx
-sudo service nginx restart
+#!/usr/bin/env bash
+#instaling nginx server
+apt-get update
+apt-get -y install nginx
+echo "Holberton School" > /var/www/html/index.html
+state=$(pgrep nginx)
+if [ -n "$state" ];
+then
+        sudo service nginx restart
+else
+        sudo service nginx start
+fi
