@@ -1,15 +1,10 @@
 #!/usr/bin/env bash
 # Update package list and install ngnix
 
-#!/usr/bin/env bash
-#instaling nginx server
-apt-get update
-apt-get -y install nginx
-echo "Holberton School" > /var/www/html/index.html
-state=$(pgrep nginx)
-if [ -n "$state" ];
-then
-        sudo service nginx restart
-else
-        sudo service nginx start
-fi
+sudo apt-get update
+sudo apt-get install -y nginx
+
+echo "Holberton School" | sudo tee /var/www/html/index.html
+
+sudo nginx -t
+sudo service nginx start
