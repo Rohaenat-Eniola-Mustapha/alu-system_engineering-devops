@@ -6,7 +6,7 @@ sudo apt-get -y install nginx
 
 # redirection config
 replacement="server_name _;\\
-    rewrite ^/redirect_me https://github.com/Skomaiya/ permanent;"
+    rewrite ^/redirect_me https://github.com/Rohaenat-Eniola-Mustapha/ permanent;"
 sudo sed -i "s|server_name _;|$replacement|" /etc/nginx/sites-available/default
 
 sudo nginx -t
