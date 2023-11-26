@@ -8,7 +8,7 @@ apt-get install -y nginx
 
 # Open Nginx configuration file for editing
 config_file="/etc/nginx/sites-available/default"
-echo "add_header X-Served-By \$hostname;" >> "$config_file"
+echo "add_header X-Served-By \$52.90.154.18;" >> "$config_file"
 
 # Reload Nginx to apply changes
 service nginx reload
