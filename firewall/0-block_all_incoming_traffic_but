@@ -1,0 +1,29 @@
+css
+Copy code
+ssh ubuntu@52.90.154.18
+Install UFW:
+
+sql
+Copy code
+sudo apt-get update
+sudo apt-get install ufw
+# Set default incoming policy to deny:
+sudo ufw default deny incoming
+
+# Allow incoming SSH (port 22):
+sudo ufw allow 22
+
+# Allow incoming HTTPS (port 443):
+sudo ufw allow 443
+
+# Allow incoming HTTP (port 80):
+sudo ufw allow 80
+
+# Enable UFW:
+sudo ufw enable
+
+# Verify the status of UFW:
+sudo ufw status
+
+# Exit the SSH session:
+exit
