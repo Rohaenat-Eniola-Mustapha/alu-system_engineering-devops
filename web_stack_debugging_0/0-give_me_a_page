@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+# Start Docker container with Apache and map port 8080 to container port 80
+docker run -p 8080:80 -d -it holbertonschool/265-0
+
+# Wait for the container to start
+sleep 2
+
+# Connect to the container and fix the issue
+docker exec -ti $(docker ps -q) /bin/bash -c "echo 'Hello Holberton' > /var/www/html/index.html"
+
+# Verify that the issue is fixed
+curl 0:8080
