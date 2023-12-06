@@ -1,4 +1,17 @@
 #!/usr/bin/env bash
-# Write a Bash script that configures a server to the above requirements
-sed -i 's/8080/80/g' /etc/nginx/sites-enabled/default
+# This script configures Nginx to listen on port 80
+
+# Install Nginx if not already installed
+apt-get update
+apt-get install -y nginx
+
+# Check if Nginx is running, if not, start it
+if ! pgrep -x "nginx" > /dev/null; then
+    service nginx start
+fi
+
+# Update Nginx configuration to listen on port 80
+sed -i 's/listen 8080 default_server;/listen 80 default_server;/g' /etc/nginx/sites-available/default
+
+# Restart Nginx to apply the changes
 service nginx restart
